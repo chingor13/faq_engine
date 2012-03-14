@@ -2,7 +2,8 @@ require "active_support/dependencies"
 
 module FaqEngine
 
-  class_attribute :model
+  mattr_accessor :backend
+  mattr_accessor :model
 
   # Yield self on setup for nice config blocks
   def self.setup

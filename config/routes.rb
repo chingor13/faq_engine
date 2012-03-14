@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :categories do
-    resources :faqs
+  resources :faq_categories do
+    resources :faq_questions
   end
 
 end

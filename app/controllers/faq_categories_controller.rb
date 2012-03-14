@@ -1,4 +1,4 @@
-class FaqsController < ApplicationController
+class FaqCategoriesController < ApplicationController
 
   def index
     @faqs = model.paginate(:page => params.fetch(:page, 1), :per_page => params.fetch(:per_page, 30))
@@ -64,7 +64,7 @@ class FaqsController < ApplicationController
   protected
 
   def model
-    @model ||= FaqEngine.model || FaqEngine::ActiveRecord::Faq
+    @model ||= FaqEngine.model || FaqEngine::ActiveRecord::FaqCategory
   end
 
 end

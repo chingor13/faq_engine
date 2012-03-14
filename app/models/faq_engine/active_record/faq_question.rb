@@ -1,6 +1,6 @@
 module FaqEngine
   module ActiveRecord
-    module Faq < ::ActiveRecord::Base
+    module FaqQuestion < ::ActiveRecord::Base
     end
   end
 end

@@ -1,6 +1,6 @@
 module FaqEngine
   module ActiveRecord
-    class Category < ::ActiveRecord::Base
+    class FaqCategory < ::ActiveRecord::Base
 
     end
   end
