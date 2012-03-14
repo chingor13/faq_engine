@@ -1,0 +1,15 @@
+<%
+  # category
+  pp category
+%>
+<%= form_for(category) do |form| %>
+  <%#= form.label(:name) do %>
+    Name: <%= form.text_field :name %>
+  <%# end %>
+
+  <%#= form.label(:description) do %>
+    Description: <%= form.text_field :description %>
+  <%# end %>
+
+  <%= form.submit() %>
+<% end %>

@@ -1,0 +1,9 @@
+<h1>FAQ's</h1>
+
+<ul>
+  <% @categories.each do |category| %>
+    <li><%= link_to category.name, faq_engine_category_path(category) %></li>
+  <% end %>
+</ul>
+
+<p><%= link_to "Create a new category", new_faq_engine_category_path() %></p>
