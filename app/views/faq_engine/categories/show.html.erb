@@ -25,4 +25,6 @@
   <% end %>
 </ul>
 
-<%= link_to "add a question", new_faq_engine_category_faq_engine_question_path(@category) %>
+<% if faq_editable? %>
+  <%= link_to "add a question", new_faq_engine_category_faq_engine_question_path(@category) %>
+<% end %>

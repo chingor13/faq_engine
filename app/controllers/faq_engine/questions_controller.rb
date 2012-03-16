@@ -2,6 +2,7 @@ class FaqEngine::QuestionsController < ApplicationController
 
   layout "faq_engine"
   before_filter :load_category
+  helper_method :faq_editable?
 
   def index
     @questions = @category.questions
@@ -64,7 +65,13 @@ class FaqEngine::QuestionsController < ApplicationController
     end
   end
 
+  ActiveSupport.run_load_hooks(:faq_engine_questions_controller, self)
+
   protected
+
+  def faq_editable?
+    true
+  end
 
   def parent_param
     params[:faq_engine_category_id]

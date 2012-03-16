@@ -1,6 +1,7 @@
 class FaqEngine::CategoriesController < ApplicationController
 
   layout "faq_engine"
+  helper_method :faq_editable?
 
   def index
     @categories = model.roots.includes(:children).all
@@ -63,7 +64,13 @@ class FaqEngine::CategoriesController < ApplicationController
     end
   end
 
+  ActiveSupport.run_load_hooks(:faq_engine_categories_controller, self)
+
   protected
+
+  def faq_editable?
+    true
+  end
 
   def model
     @model ||= FaqEngine.category_model

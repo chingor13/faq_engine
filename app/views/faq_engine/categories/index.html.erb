@@ -21,4 +21,6 @@
   <% end %>
 </table>
 
-<p><%= link_to "Create a new category", new_faq_engine_category_path() %></p>
+<% if faq_editable? %>
+  <p><%= link_to "Create a new category", new_faq_engine_category_path() %></p>
+<% end %>
