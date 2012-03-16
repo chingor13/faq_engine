@@ -1,1 +1,3 @@
-<h1>Edit</h1>
+<h1>Edit: <%= @category.name %></h1>
+
+<%= render :partial => "faq_engine/categories/form", :locals => {:category => @category} %>

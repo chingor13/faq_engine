@@ -12,8 +12,9 @@ Gem::Specification.new do |s|
   s.description = "FaqEngine provides a basic FAQ resource.  You can customize views and storage engines"
 
   # dependencies
-  s.add_dependency "activesupport", ">= 3.1.0"
-  s.add_dependency "rails", ">= 3.1.0"
+  s.add_dependency "activesupport", "~> 3.2.0"
+  s.add_dependency "rails", "~> 3.2.0"
+  s.add_dependency "acts_as_tree_rails3", "~> 0.1.0"
 
   s.files = `git ls-files`.split("\n")
   s.executables = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact

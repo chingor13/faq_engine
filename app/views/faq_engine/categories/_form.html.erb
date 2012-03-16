@@ -1,15 +1,25 @@
 <%
   # category
-  pp category
+  parent_categories = category.class.all - [category]
 %>
 <%= form_for(category) do |form| %>
-  <%#= form.label(:name) do %>
-    Name: <%= form.text_field :name %>
-  <%# end %>
-
-  <%#= form.label(:description) do %>
-    Description: <%= form.text_field :description %>
-  <%# end %>
+  <% category.errors.full_messages.each do |message| %>
+    <p class="error"><%= message %></p>
+  <% end %>
+  <table>
+    <tr>
+      <th><%= form.label("Name:") %></th>
+      <td><%= form.text_field :name %></td>
+    </tr>
+    <tr>
+      <th><%= form.label("Description:") %></th>
+      <td><%= form.text_field :description %></td>
+    </tr>
+    <tr>
+      <th><%= form.label("Parent:") %></th>
+      <td><%= form.collection_select(:parent_id, parent_categories, :id, :name, :include_blank => true) %></td>
+    </tr>
+  </table>
 
   <%= form.submit() %>
 <% end %>

@@ -12,7 +12,7 @@ class CreateFaqTables < ActiveRecord::Migration
     create_table :faq_questions do |t|
       t.integer :category_id
       t.string  :question
-      t.string  :answer
+      t.text    :answer
       t.integer :position
     end
     add_index :faq_questions, :category_id

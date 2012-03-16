@@ -1,0 +1,7 @@
+en:
+  faq_engine:
+    category_name: "Solution"
+    routing:
+      category_path: "faq_engine/categories"
+      question_path: "faq_engine/questions"
+    title: "FAQs"

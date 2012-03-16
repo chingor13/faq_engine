@@ -1,1 +1,28 @@
-<h1>Show</h1>
+<h1><%=t("faq_engine.category_name").pluralize %> in "<%= @category.name %>"</h1>
+
+<% if @category.children.count > 0 %>
+  <div class="subcategories">
+    <h2>Subcategories in "<%= @category.name %>"</h2>
+    <table>
+      <% @category.children.in_groups_of(2) do |category_group| %>
+        <tr>
+          <% category_group.each do |subcategory| %>
+            <td>
+              <% if subcategory %>
+                <%= link_to subcategory.name, faq_engine_category_path(subcategory) %>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>
+
+<ul>
+  <% @category.questions.each do |question| %>
+    <li><%= link_to question.question, faq_engine_category_faq_engine_question_path(@category, question) %></li>
+  <% end %>
+</ul>
+
+<%= link_to "add a question", new_faq_engine_category_faq_engine_question_path(@category) %>

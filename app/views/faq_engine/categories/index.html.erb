@@ -1,9 +1,24 @@
-<h1>FAQ's</h1>
+<h1><%=t("faq_engine.category_name").pluralize %></h1>
 
-<ul>
-  <% @categories.each do |category| %>
-    <li><%= link_to category.name, faq_engine_category_path(category) %></li>
+<table>
+  <% @categories.in_groups_of(2).each do |group| %>
+    <tr>
+      <% group.each do |category| %>
+        <td>
+          <% if category %>
+            <p><%= link_to category.name, faq_engine_category_path(category) %></p>
+            <% if category.children.length > 0 %>
+              <p class="subcategories">
+                <% category.children.each do |subcategory| %>
+                  <%= link_to subcategory.name, faq_engine_category_path(subcategory) %>,
+                <% end %>
+              </p>
+            <% end %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
   <% end %>
-</ul>
+</table>
 
 <p><%= link_to "Create a new category", new_faq_engine_category_path() %></p>

@@ -1,10 +1,9 @@
 class FaqEngine::CategoriesController < ApplicationController
 
+  layout "faq_engine"
+
   def index
-    @categories = model.paginate({
-      :page => params.fetch(:page, 1), 
-      :per_page => params.fetch(:per_page, 30)
-      })
+    @categories = model.roots.includes(:children).all
     respond_to do |format|
       format.html
     end

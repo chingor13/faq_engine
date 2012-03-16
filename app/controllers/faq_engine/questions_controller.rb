@@ -1,31 +1,34 @@
-class FaqQuestionsController < ApplicationController
+class FaqEngine::QuestionsController < ApplicationController
+
+  layout "faq_engine"
+  before_filter :load_category
 
   def index
-    @faqs = model.paginate(:page => params.fetch(:page, 1), :per_page => params.fetch(:per_page, 30))
+    @questions = @category.questions
     respond_to do |format|
       format.html
     end
   end
 
   def show
-    @faq = model.find(params[:id])
+    @question = model.find(params[:id])
     respond_to do |format|
       format.html
     end
   end
 
   def new
-    @faq = model.new(params[:faq])
+    @question = @category.questions.build(params[:faq_engine_question])
     respond_to do |format|
       format.html
     end
   end
 
   def create
-    @faq = model.new(params[:faq])
+    @question = @category.questions.build(params[:faq_engine_question])
     respond_to do |format|
-      if @faq.save
-        format.html { redirect_to faq_path(@faq) }
+      if @question.save
+        format.html { redirect_to faq_engine_category_question_path(@category, @question) }
       else
         format.html { render :action => "new" }
       end
@@ -33,17 +36,17 @@ class FaqQuestionsController < ApplicationController
   end
 
   def edit
-    @faq = model.find(params[:id])
+    @question = model.find(params[:id])
     respond_to do |format|
       format.html
     end
   end
 
   def update
-    @faq = model.find(params[:id])
+    @question = model.find(params[:id])
     respond_to do |format|
-      if @faq.update_attributes(params[:faq])
-        format.html { redirect_to faq_path(@faq) }
+      if @question.update_attributes(params[:faq_engine_question])
+        format.html { redirect_to faq_engine_category_question_path(@category, @question) }
       else
         format.html { render :action => "edit" }
       end
@@ -51,10 +54,10 @@ class FaqQuestionsController < ApplicationController
   end
 
   def destroy
-    @faq = model.find(params[:id])
+    @question = model.find(params[:id])
     respond_to do |format|
-      if @faq.destroy
-        format.html { redirect_to faqs_path() }
+      if @question.destroy
+        format.html { redirect_to faq_engine_category_path(@category) }
       else
         format.html { render :action => "show" }
       end
@@ -63,8 +66,20 @@ class FaqQuestionsController < ApplicationController
 
   protected
 
+  def parent_param
+    params[:faq_engine_category_id]
+  end
+
+  def load_category
+    @category = parent_model.find(parent_param)
+  end
+
+  def parent_model
+    @parent_model ||= FaqEngine::ActiveRecord::Category
+  end
+
   def model
-    @model ||= FaqEngine.model || FaqEngine::ActiveRecord::Faq
+    @model ||= FaqEngine::ActiveRecord::Question
   end
 
 end

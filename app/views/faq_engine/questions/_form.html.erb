@@ -1,0 +1,21 @@
+<%
+  # category
+  # question
+%>
+<%= form_for([category, question]) do |form| %>
+  <% question.errors.full_messages.each do |message| %>
+    <p class="error"><%= message %></p>
+  <% end %>
+  <table>
+    <tr>
+      <th><%= form.label("Question:") %></th>
+      <td><%= form.text_field :question %></td>
+    </tr>
+    <tr>
+      <th><%= form.label("Answer:") %></th>
+      <td><%= form.text_field :answer %></td>
+    </tr>
+  </table>
+
+  <%= form.submit() %>
+<% end %>
