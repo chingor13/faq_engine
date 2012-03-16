@@ -9,7 +9,7 @@ module FaqEngine
       include ::ActiveRecord::Acts::Tree
       acts_as_tree :order => "position"
 
-      validates_presence_of :name, :description
+      validates_presence_of :name
 
       # hack to get the automatic url generation to work
       def self.model_name

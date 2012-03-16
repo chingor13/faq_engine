@@ -66,7 +66,7 @@ class FaqEngine::CategoriesController < ApplicationController
   protected
 
   def model
-    @model ||= FaqEngine::ActiveRecord::Category
+    @model ||= FaqEngine.category_model
   end
 
 end

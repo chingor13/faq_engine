@@ -75,11 +75,11 @@ class FaqEngine::QuestionsController < ApplicationController
   end
 
   def parent_model
-    @parent_model ||= FaqEngine::ActiveRecord::Category
+    @parent_model ||= FaqEngine.category_model
   end
 
   def model
-    @model ||= FaqEngine::ActiveRecord::Question
+    @model ||= FaqEngine.question_model
   end
 
 end
